@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+}
+:root{
+    --bg-color:#1f242d;
+    --second-bg-color:#323946;
+    --main-color:#0059ff;
+    --white-color:#fff;
+    --disabled-color:#fff3;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    color: var(--white-color);
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+}
+header.active{
+    animation: show-header 1.5s linear forwards;
+    animation-delay: 1.2s;
+}
+@keyframes show-header{
+    100%{
+        visibility: visible;
+        opacity: 1;
+    }
+}
+.Logo{
+    font-size: 2rem;
+    color: var(--white-color);
+    font-weight: 700;
+}
+nav a{
+    font-size: 2rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin-left: 3.5rem;
+    transition: .5s;
+}
+nav a:hover,nav a.active{
+    color: var(--main-color);
+}
+#menu-icon{
+    font-size: 4rem;
+    display: none;
+}
+.bars-box
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.bars-box .bar{
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    animation: hide-bars .5s ease-in-out both;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes hide-bars{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-100%0);
+    }
+}
+.bars-box.active .bar{
+    animation: show-bars .5s ease-in-out both;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes show-bars{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+section{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10rem 9% 2rem;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+section.active{
+    animation: show-content 1.5s linear  forwards;
+    animation-delay: 1.6s;
+}
+@keyframes show-content{
+    100%{
+        visibility: visible;
+        opacity: 1;
+        overflow: auto;
+    }
+}
+.home{
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+.home-details h1{
+    font-size: clamp(3.5rem,10vw,5.5rem);
+}
+.home-details h2{
+    display: inline-block;
+    font-size: 3.2rem;
+    margin-top: -1rem;
+}
+.home-details h2 span{
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: .07rem var(--main-color);
+    animation: display-text 16s linear  infinite;
+    animation-delay:calc(-4s*var(--i))
+}
+@keyframes display-text {
+    25%,100%{
+        display: none;
+    }
+}
+.home-details h2 span::before{
+    content: attr(data-text);
+    position: absolute;
+    width: 0;
+    border-right: .2rem solid var(--main-color);
+    color:var(--main-color);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: fill-text 4s linear infinite;
+}
+@keyframes fill-text {
+    10%,100%{
+        width: 0;
+    }
+    70%,90%{
+        width: 100%;
+    }
+}
+.home-details p{
+    font-size: 1.6rem;
+    margin: 1rem 0 2.5rem;
+}
+.home-details .btn-sci{
+    display: flex;
+    align-items: center;
+}
+.btn{
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--main-color);
+    border: .2rem solid var(--main-color);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color);
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    font-weight: 500;
+    transition: .5s;
+}
+.btn:hover{
+    background: transparent;
+    color: var(--main-color);
+    box-shadow: none;
+}
+.home-details .btn-sci .sci{
+    margin-left: 2rem;
+}
+.home-details .btn-sci .sci a{
+    display: inline-flex;
+    padding: .8rem;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 0 .8rem;
+}
+.home-details .btn-sci .sci a:hover{
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+.home-img .img-box{
+    position: relative;
+    width: 32vw;
+    height: 32vw;
+    border-radius: 50%;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.home-img .img-box::before,.home-img .img-box::after{
+    content: '';
+    position: absolute;
+    width: 50rem;
+    height: 50rem;
+    background: conic-gradient(transparent,transparent,transparent,var(--main-color));
+    transform: rotate(0deg);
+    animation: rotate-border 10s linear infinite;
+}
+.home-img .img-box::after{
+    animation-delay: -5s;
+}
+@keyframes rotate-border{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.home-img .img-box .img-item{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    border-radius: 50%;
+    border: .1rem solid --bg-color;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+}
+.home-img .img-box .img-item img{
+    position: absolute;
+    top: 3rem;
+    display: block;
+    width: 85%;
+    object-fit: cover;
+    mix-blend-mode: lighten;
+}
+.heading{
+    font-size: 4.5em;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.heading span{
+    color:var(--main-color);
+}
+.services-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
+    gap: 2rem;
+}
+.services-container .services-box{
+    padding: 3rem 2.5rem;
+    background: var(--second-bg-color);
+    border: .2rem solid var(--second-bg-color);
+    border-radius: 1rem;
+    transition: .5s;
+}
+.services-container .services-box:hover{
+    border-color: var(--main-color);
+    transform: scale(1.02);
+}
+.services-box .icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.services-box .icon i{
+    font-size: 4.5rem;
+    transition: .5s;
+}
+.services-box:hover .icon:not(a i){
+    color: var(--main-color);
+}
+.services-box .icon a{
+    display: inline-flex;
+    background: var(--white-color);
+    border-radius: 50%;
+    padding: 1rem;
+    transition: .5s;
+}
+.services-box:hover .icon a{
+    background: var(--main-color);
+}
+.services-box .icon a i{
+    font-size: 3rem;
+    color: var(--bg-color);
+    transform: rotate(225deg);
+}
+.services-box .icon a:hover i{
+    transform: rotate(180deg);
+}
+.services-box h3{
+    font-size: 3rem;
+    margin: .5rem 0 2rem;
+    transition: .5s;
+}
+.services-box:hover h3{
+    color: var(--main-color);
+}
+.services-box p{
+    font-size: 1.6rem;
+}
+.resume-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+}
+.resume-box h2{
+    font-size: 4.5rem;
+}
+.resume-box p{
+    font-size: 1.6rem;
+}
+.resume-box .desc{
+    margin: 2rem 0 2.5rem;
+}
+.resume-box .resume-btn{
+    width: 100%;
+    height: 5.3rem;
+    background: var(--second-bg-color);
+    border: .2rem solid var(--second-bg-color);
+    font-size: 1.6rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin-bottom: 2rem;
+    border-radius: .8rem;
+    cursor: pointer;
+}
+.resume-box .resume-btn.active{
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+.resume-detail{
+    display: none;
+}
+.resume-detail.active{
+    display: block;
+}
+resume-box .heading{
+    font-size: 3.5rem;
+    text-align: left;
+}
+.resume-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
+    gap: 2rem;
+    height: 45rem;
+    overflow: auto;
+}
+.resume-list::-webkit-scrollbar{
+    width: .7rem;
+
+}
+.resume-list::-webkit-scrollbar-thumb{
+    background: transparent;
+    border-radius: 1rem;
+}
+.resume-list:hover::-webkit-scrollbar-thumb{
+    background: var(--main-color);
+}
+.resume-list .resume-item{
+    background: var(--second-bg-color);
+    border-radius: .8rem;
+    padding: 3rem 2.5rem;
+    height: calc((45rem-2rem)/2);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.resume-item .year{
+    color: var(--main-color);
+}
+.resume-item h3{
+    font-size: 2.2rem;
+}
+.resume-item .company{
+    position: relative;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+.resume-item .company::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: .5rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    margin-left: -2rem;
+}
+.resume-detail.skills .resume-list{
+    grid-template-columns: repeat(autofit,minmax(15rem,1fr));
+    height: auto;
+    overflow: visible;
+}
+.resume-detail.skills .resume-item {
+    position: relative;
+    align-items: center;
+    height: auto;
+}
+.resume-detail.skills .resume-item i{
+    font-size: 8.5rem;
+    transition: .5s;
+}
+.resume-detail.skills .resume-item:hover i{
+    color: var(--main-color);
+}
+.resume-detail.skills .resume-item span{
+    position: absolute;
+    top: -20%;
+    background: var(--white-color);
+    color: var(--bg-color);
+    font-size: 1.6rem;
+    padding: .5rem 1rem;
+    border-radius: .6rem;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(.9);
+    transition: .2s;
+}
+.resume-detail.skills .resume-item:hover span{
+    top: -25%;
+    opacity: 1;
+    transform: scale(1);
+}
+.resume-detail.about .resume-list{
+    height: auto;
+    grid-template-columns: repeat(autofit,minmax(25rem,1fr));
+}
+.resume-detail.about .resume-item p{
+    height: auto;
+    padding: 0 0 .5rem;
+    background:transparent;
+}
+.resume-detail.about .resume-item p{
+    color: var(--main-color);
+}
+.resume-detail.about .resume-item p span{
+    color: var(--white-color);
+    margin-left: 1rem;
+    font-size: 1.8rem;
+}
+.portfolio-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 3rem;
+}
+.portfolio-detail{
+    display: none;
+}
+.portfolio-detail.active{
+    display: block;
+}
+.portfolio-box .numb{
+    font-size: 8rem;
+    -webkit-text-stroke: .07rem var(--white-color);
+    color: transparent;
+    line-height: 1;
+}
+.portfolio-box h3{
+    font-size: 3.5rem;
+    margin: .8rem 0 2rem;
+}
+.portfolio-box p{
+    font-size: 1.6rem;
+}
+.portfolio-box .tech{
+    margin: 2rem 0;
+    color: var(--main-color);
+    border-bottom: .1rem solid var(--white-color);
+    padding-bottom: 2rem;
+}
+.portfolio-box .live-github a{
+    position: relative;
+    display: inline-flex;
+    padding: 1.3rem;
+    font-size: 3rem;
+    color: var(--white-color);
+    border-radius: 50%;
+    background: var(--second-bg-color);
+    transition: .5s;
+}
+.portfolio-box .live-github a:hover{
+    color:var(--main-color);
+}
+.portfolio-box .live-github a::first-child{
+    margin-right: 1.5rem;
+}
+.portfolio-box .live-github a:first-child i{
+    transform: rotate(135deg);
+}
+.portfolio-box .live-github a span{
+    position: absolute;
+    top: -60%;
+    left: 50%;
+    transform: translateX(-50%) scale(.9);
+    font-size: 1.6rem;
+    white-space: nowrap;
+    padding: .5rem 1rem;
+    border-radius: .6rem;
+    pointer-events: none;
+    background: var(--white-color);
+    color: var(--bg-color);
+    opacity: 0;
+    transition: .2s;
+}
+.portfolio-box .live-github a:hover span{
+    top: -70%;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+.portfolio-box .portfolio-carousel{
+    width: 100%;
+    height: 45rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.portfolio-carousel .img-slide{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 2rem;
+    height: inherit;
+    transition: .5s;
+}
+.portfolio-carousel .img-item{
+    height: inherit;
+}
+.portfolio-carousel .img-item img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+.portfolio-box .navigation{
+    text-align: right;
+    margin-top: 2rem;
+}
+.portfolio-box .navigation button{
+    display: inline-flex;
+    padding: .4rem;
+    background: var(--second-bg-color);
+    border: .2rem solid var(--main-color);
+    border-radius: .6rem;
+    font-size: 4rem;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.portfolio-box .navigation button.disabled{
+    border-color: var(--second-bg-color);
+    color: var(--disabled-color);
+}
+.portfolio-box .navigation .arrow-right{
+    margin-left: 1.5rem;
+}
+.contact-container{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+}
+.contact-container .contact-box:first-child{
+    align-self: center;
+}
+.contact-box h2{
+    font-size: 4.5rem;
+}
+.contact-box p{
+    font-size: 1.6rem;
+}
+.contact-box .desc{
+    margin: 1.5rem 0 2.5rem;
+}
+.contact-box .contact-detail{
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+.contact-detail i{
+    display: inline-flex;
+    background: var(--second-bg-color);
+    color: var(--main-color);
+    font-size: 3rem;
+    padding: 1.2rem;
+    border-radius: .6rem;
+    margin-right: 1.5rem;
+}
+.contact-detail .detail p:first-child{
+    color:var(--main-color);
+}
+.contact-box form{
+    background: var(--second-bg-color);
+    padding: 2.5rem 3.5rem 3.5rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+.contact-box .heading{
+    font-size: 3.5rem;
+}
+.contact-box .field-box{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+.contact-box .field-box input,.contact-box .field-box textarea{
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border: .15rem solid var(--bg-color);
+    border-radius: .6rem;
+    font-size: 1.6rem;
+    color: var(--white-color);
+}
+.contact-box .field-box textarea{
+    grid-column: 1/-1;
+    height: 26rem;
+    resize: none;
+}
+.contact-box .field-box input:focus, .contact-box .field-box textarea:focus{
+    border-color: var(--main-color);
+}
+.contact-box .btn{
+    margin-top: 2rem;
+    cursor: pointer;
+}
+@media screen and (max-width: 1200px) {
+    html{
+        font-size: 55%;
+    }
+}
+@media screen and (max-width: 992px) {
+    header{
+        padding: 2rem 4%;
+    }
+    section{
+        padding: 10rem 4% 2rem;
+    }
+}
+@media screen and (max-width: 810px) {
+    .contact-box .field-box{
+        grid-template-columns: 1fr;
+    }
+}
+@media screen and (max-width: 768px) {
+    #menu-icon{
+        display: block;
+    }
+    nav{
+        position: absoulte;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0,0,0,.2);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+        text-align: center;
+        display: none;
+    }
+
+    nav.active{
+        display: block;
+    }
+
+    nav a{
+        display: block;
+        margin: 4rem 0;
+    }
+    .home{
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 2rem;
+    }
+    .home-img .img-box{
+        width: 35rem;
+        height: 35rem;
+    }
+    .resume-container,
+    .portfolio-container,
+    .contact-container{
+        grid-template-columns: 1fr;
+    }
+    .resume-container{
+        gap: 3em;
+    }
+    .portfolio-container .portfolio-box:first-child{
+        order: 1;
+    }
+
+    .content-box .field-box{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media screen and (max-width:600px){
+    .home-img .img-box{
+        width: 30rem;
+        height: 30rem;
+    }
+
+    .contact-box .field-box{
+        grid-template-columns: 1fr;
+    }
+}
+@media screen and (max-width:450px) {
+    html{
+        font-size: 50%;
+    }
+}
+@media screen and (max-width:400px) {
+    .home-detail,
+    .resume-box h2,
+    .resume-box .heading,
+    .resume-box .desc,
+    .resume-detail.about .resume-item{
+        text-align: center;
+    }
+    .home-detail .btn-sci{
+        flex-direction: column-reverse;
+    }
+    .home-detail .btn-sci .sci{
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+    .contact-box form{
+        padding: 2.5rem 3.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+   <header class="active">
+    <a href="#" class="Logo">Kanha.</a>
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <nav>
+        <a href="#" class="active">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Resume</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+    </nav>
+   </header>
+
+<div class="bars-box active">
+    <div class="bar" style="--i:6;"></div>
+    <div class="bar" style="--i:5;"></div>
+    <div class="bar" style="--i:4;"></div>
+    <div class="bar" style="--i:3;"></div>
+    <div class="bar" style="--i:2;"></div>
+    <div class="bar" style="--i:1;"></div>
+</div>
+
+   <section class="home active">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    <div class="home-details">
+        <h1>Souradeep Mohapatra</h1>
+        <h2>
+            i'm a 
+            <span style="--i:4;"data-text="Ui/Ux Designer" >Ui/Ux Designer</span>
+            <span style="--i:3;"data-text="Photographer" >Photographer</span>
+            <span style="--i:2;"data-text="Video Editor" >Video Editor</span>
+            <span style="--i:1;"data-text="Web Designer" >Web Designer</span>
+        </h2>
+        <p>Creative designer with a sharp eye for detail and a passion for visual storytelling. I bring ideas to life through thoughtful design, blending aesthetics with purpose to create impactful user experiences and memorable brand identities.</p>
+        <div class="btn-sci">
+            <a href="#" class="btn">Download CV</a>
+            <div class="sci">
+                <a href="#"><i class='bx bxl-github'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+                <a href="#"><i class='bx bxl-youtube'></i></a>
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="home-img">
+        <div class="img-box">
+            <div class="img-item">
+                <img src="photo1.jpg.png">
+            </div>
+        </div>
+    </div>
+   </section>
+
+   <section class="services">
+    <h2 class="heading">My <span>
+        Services
+    </span>
+    </h2>
+    <div class="services-container">
+        <div class="services-box">
+            <div class="icon">
+                <i class='bx bx-code-alt'></i>
+                <a href="#"><i class='bx bx-arrow-back'></i></a>
+            </div>
+            <h3>Web Development</h3>
+            <p>Master full-stack web development by building real-world projects using HTML, CSS, JavaScript, Node.js, React, and databases.</p>
+        </div>
+
+         <div class="services-box">
+            <div class="icon">
+                <i class='bx bxs-paint' ></i>
+                <a href="#"><i class='bx bx-arrow-back'></i></a>
+            </div>
+            <h3>Ui/Ux Design</h3>
+            <p>Learn UI/UX design fundamentals, wireframing, prototyping, and user research to create intuitive, user-friendly digital experiences and interfaces.</p>
+        </div>
+
+         <div class="services-box">
+            <div class="icon">
+                <i class='bx bx-palette' ></i>
+                <a href="#"><i class='bx bx-arrow-back'></i></a>
+            </div>
+            <h3>Graphic Design</h3>
+            <p>Learn graphic design principles, tools, and techniques to create stunning visuals for branding, marketing, social media, and more.</p>
+        </div>
+
+        <div class="services-box">
+            <div class="icon">
+                <i class='bx bx-trending-up' ></i>
+                <a href="#"><i class='bx bx-arrow-back'></i></a>
+            </div>
+            <h3>SEO</h3>
+            <p>Learn SEO strategies to boost website visibility, rank higher on Google, and drive more organic traffic and conversions.</p>
+        </div>
+
+        <div class="services-box">
+            <div class="icon">
+                <i class='bx bx-slideshow' ></i>
+                <a href="#"><i class='bx bx-arrow-back'></i></a>
+            </div>
+            <h3>Video Editing</h3>
+            <p>Master video editing using industry tools to create professional content for YouTube, social media, films, and promotional videos.</p>
+        </div>
+
+        <div class="services-box">
+            <div class="icon">
+                <i class='bx bx-camera' ></i>
+                <a href="#"><i class='bx bx-arrow-back'></i></a>
+            </div>
+            <h3>Photography</h3>
+            <p>Master photography basics, camera settings, composition, and editing to capture stunning photos for portraits, products, travel, and more.</p>
+        </div>
+    </div>
+   </section>
+
+   <section class="resume">
+    <div class="resume-container">
+        <div class="resume-box">
+            <h2>Why Hire Me?</h2>
+            <p class="desc">Creative and multi-skilled designer with expertise in UI/UX, web design, video editing, photography, and graphic design. Passionate about crafting engaging digital experiences with a strong focus on visuals and usability.
+            </p>
+            <button class="resume-btn active">Experience</button>
+            <button class="resume-btn">Education</button>
+            <button class="resume-btn">Skills</button>
+            <button class="resume-btn">About Me</button>
+        </div>
+        <div class="resume-box">
+            <div class="resume-detail experience active">
+                <h2 class="heading">My <span>Experience</span></h2>
+                <p class="desc">Designed over 20+ websites and landing pages using Figma and Webflow.Collaborated with clients to deliver custom UI/UX designs tailored to brand identity.</p>
+                <div class="resume-list">
+                    <div class="resume-item">
+                        <p class="year">2025-Present</p>
+                        <h3>Web Designer</h3>
+                        <p class="company">Simplilearn Corp.</p>
+                        <p>Gained practical experience in web design development at Simplilearn Corp, focusing on responsive design, layout structuring, and modern UI implementation techniques.</p>
+                    </div>
+
+                     <div class="resume-item">
+                        <p class="year">2025(May-June)</p>
+                        <h3>Ui/Ux Designer</h3>
+                        <p class="company">Simplilearn Corp.</p>
+                        <p>Gained hands-on experience at Simplilearn Corp in UI/UX design, web design, and project-based learning with real-world design applications.</p>
+                    </div>
+                    
+                    <div class="resume-item">
+                        <p class="year">2024-2025(it will go further) </p>
+                        <h3>Video Editor</h3>
+                        <p class="company">YouTube</p>
+                        <p>Gained video editing experience through YouTube, creating and editing engaging content using tools like Premiere Pro, CapCut, and After Effects.</p>
+                    </div>
+                     <div class="resume-item">
+                        <p class="year">2024-2025</p>
+                        <h3>Graphic Designer</h3>
+                        <p class="company">Canva inc.</p>
+                        <p>Gained Graphic Designer experience through Canva, creating and editing engaging content using tools like Premiere Pro, CapCut, and After Effects.</p>
+                    </div>
+                     <div class="resume-item">
+                        <p class="year">2024-2025</p>
+                        <h3>Photographer</h3>
+                        <p class="company">Instagram</p>
+                        <p>Gained photography experience through instagram, creating and editing engaging content using tools like Premiere Pro, CapCut, and After Effects.</p>
+                    </div>
+                     <div class="resume-item">
+                        <p class="year">2024-2025</p>
+                        <h3>Photo Editor</h3>
+                        <p class="company">Adobe inc.</p>
+                        <p>Gained video editing experience through Adobe Photoshop, creating and editing engaging content using tools like Premiere Pro, CapCut, and After Effects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-detail education">
+                <h2 class="heading">My <span>Education</span></h2>
+                <p class="desc">Education: B.Tech in Electrical and Electronics Engineering from IIIT Bhubaneswar, with strong design interest and project experience in creative digital fields.</p>
+                <div class="resume-list">
+                    <div class="resume-item">
+                        <p class="year">2024</p>
+                        <h3>Programming Course</h3>
+                        <p class="company">Online Course</p>
+                        <p>I am learning coding through online platforms, focusing on web development, app design, and improving my technical skills for creative digital projects.</p>
+                    </div>
+                    <div class="resume-item">
+                        <p class="year">2024</p>
+                        <h3>Designing Course</h3>
+                        <p class="company">Online Course</p>
+                        <p>I am learning Designing through online platforms, focusing on web development, app design, and improving my technical skills for creative digital projects.</p>
+                    </div>
+                    <div class="resume-item">
+                        <p class="year">2024</p>
+                        <h3>Video Editing Course</h3>
+                        <p class="company">Online Course</p>
+                        <p>I am learning Video Editing through online platforms, focusing on web development, app design, and improving my technical skills for creative digital projects.</p>
+                    </div>
+                    <div class="resume-item">
+                        <p class="year">2024</p>
+                        <h3>Photography Course</h3>
+                        <p class="company">Online Course</p>
+                        <p>I am learning Photography through online platforms, focusing on web development, app design, and improving my technical skills for creative digital projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-detail skills">
+                <h2 class="heading">My <span>Skills</span></h2>
+                <p class="desc">Skilled in web and app design, UI/UX, video editing, photography, and graphic design with a strong creative and user-focused approach.</p>
+                <div class="resume-list">
+                    <div class="resume-item">
+                        <i class='bx bxl-html5'></i>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="resume-item">
+                        <i class='bx bxl-css3' ></i>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="resume-item">
+                        <i class='bx bxl-javascript' ></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="resume-item">
+                        <i class='bx bxl-react' ></i>
+                        <span>ReactJS</span>
+                    </div>
+                    <div class="resume-item">
+                        <i class='bx bxl-python' ></i>
+                        <span>Python</span>
+                    </div>
+                     <div class="resume-item">
+                        <i class='bx bxs-paint' ></i>
+                        <span>Ui/Ux Design</span>
+                    </div>
+                     <div class="resume-item">
+                        <i class='bx bx-video' ></i>
+                        <span>Video Editing</span>
+                    </div>
+                     <div class="resume-item">
+                        <i class='bx bxl-tailwind-css' ></i>
+                        <span>Tailwind CSS</span>
+                    </div>
+                     <div class="resume-item">
+                        <i class='bx bxl-figma' ></i>
+                        <span>Figma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-detail about">
+                <h2 class="heading">About <span>Me</span></h2>
+                <p class="desc">I’m Souradeep Mohapatra, a passionate and versatile designer skilled in UI/UX, web design, video editing, photography, and graphic design, dedicated to crafting meaningful and visually engaging digital experiences.</p>
+                <div class="resume-list">
+                    <div class="resume-item">
+                        <p>Name:- <span>Souradeep Mohapatra</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Gender:- <span>Male</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Age:- <span>19 Years Old</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Status:- <span>Single</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>City:- <span>Cuttack</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Nationality:- <span>Indian</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Experience:- <span>1 Years</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Full time:- <span>Available</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Freelance:- <span>Available</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Phone:- <span>(+91) 6371807985</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Email:- <span>souradeepmohapatra@gmail.com</span></p>
+                    </div>
+                     <div class="resume-item">
+                        <p>Language:- <span>English & Hindi</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </section>
+
+   <section class="portfolio">
+    <h2 class="heading">Latest <span>Projects</span></h2>
+    <div class="portfolio-container">
+        <div class="portfolio-box">
+            <div class="portfolio-detail active">
+                <p class="numb">01</p>
+                <h3>Web Designing Project</h3>
+                <p>Designed and developed responsive portfolio and landing page websites using HTML, CSS, and JavaScript with a focus on modern UI/UX.</p>
+                <div class="tech">
+                    <p>HTML5, CSS3, JavaScript</p>
+                </div>
+                <div class="live-github">
+                    <a href="#"><i class='bx bx-arrow-back'></i><span>Live Project</span></a>
+                    <a href="#"><i class='bx bxl-github'></i><span>Github Repository</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-detail">
+                <p class="numb">02</p>
+                <h3>App Designing Project</h3>
+                <p>Designed a modern, user-friendly mobile app interface focusing on intuitive navigation, clean layout, and engaging user experience elements.</p>
+                <div class="tech">
+                    <p>Flutter</p>
+                </div>
+                <div class="live-github">
+                    <a href="#"><i class='bx bx-arrow-back'></i><span>Live Project</span></a>
+                    <a href="#"><i class='bx bxl-github'></i><span>Github Repository</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-detail">
+                <p class="numb">03</p>
+                <h3>Graphic Design Project</h3>
+                <p>Created visually appealing graphic designs using color theory, typography, and layout to deliver impactful branding and creative visual communication.</p>
+                <div class="tech">
+                    <p>Canva,Adobe illustrator</p>
+                </div>
+                <div class="live-github">
+                    <a href="#"><i class='bx bx-arrow-back'></i><span>Live Project</span></a>
+                    <a href="#"><i class='bx bxl-github'></i><span>Github Repository</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-detail">
+                <p class="numb">04</p>
+                <h3>Back-end Project</h3>
+                <p>Developed secure and scalable backend systems using Node.js and MongoDB, focusing on APIs, data management, and server-side logic.</p>
+                <div class="tech">
+                    <p>Node js,mongoDB,SQL</p>
+                </div>
+                <div class="live-github">
+                    <a href="#"><i class='bx bx-arrow-back'></i><span>Live Project</span></a>
+                    <a href="#"><i class='bx bxl-github'></i><span>Github Repository</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-detail">
+                <p class="numb">05</p>
+                <h3>Ui/Ux Project</h3>
+                <p>Crafted user-centric UI/UX designs with wireframes, prototypes, and usability testing to enhance functionality, accessibility, and overall user satisfaction.</p>
+                <div class="tech">
+                    <p>Figma</p>
+                </div>
+                <div class="live-github">
+                    <a href="#"><i class='bx bx-arrow-back'></i><span>Live Project</span></a>
+                    <a href="#"><i class='bx bxl-github'></i><span>Github Repository</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-detail">
+                <p class="numb">06</p>
+                <h3>Front-end Project</h3>
+                <p>Developed responsive and interactive web interfaces using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and seamless user experience.</p>
+                <div class="tech">
+                    <p>React js,Tailwind CSS</p>
+                </div>
+                <div class="live-github">
+                    <a href="#"><i class='bx bx-arrow-back'></i><span>Live Project</span></a>
+                    <a href="#"><i class='bx bxl-github'></i><span>Github Repository</span></a>
+                </div>
+            </div>
+        </div>
+            <div class="portfolio-box">
+                <div class="portfolio-carousel">
+                    <div class="img-slide">
+                        <div class="img-item">
+                            <img src="images/portfolio1.jpg">
+                        </div>
+                         <div class="img-item">
+                            <img src="images/portfolio2.jpg">
+                        </div>
+                         <div class="img-item">
+                            <img src="images/portfolio3.jpg">
+                        </div>
+                         <div class="img-item">
+                            <img src="images/portfolio4.jpg">
+                        </div>
+                         <div class="img-item">
+                            <img src="images/portfolio5.jpg">
+                        </div>
+                         <div class="img-item">
+                            <img src="images/portfolio6.jpg">
+                        </div>
+                    </div>
+                </div>
+            <div class="navigation">
+                <button class="arrow-left disabled"><i class='bx bx-chevron-left'></i></button>
+                <button class="arrow-right"><i class='bx bx-chevron-right'></i></button>
+            </div>
+        </div>
+    </div>
+   </section>
+
+   <section class="contact">
+    <div class="contact-container">
+        <div class="contact-box">
+            <h2>Let's Work Together</h2>
+            <p class="desc">Let’s work together and bring ideas to life with creativity, collaboration, innovation, and passion for outstanding digital experiences.</p>
+            <div class="contact-detail">
+                <i class='bx bxs-phone'></i>
+                <div class="detail">
+                    <p>Phone</p>
+                    <p>(+91) 6371807985</p>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <i class='bx bxs-envelope' ></i>
+                <div class="detail">
+                    <p>Email</p>
+                    <p>souradeepmohapatra@gmail.com</p>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <i class='bx bxs-map' ></i>
+                <div class="detail">
+                    <p>Address</p>
+                    <p>IIIT Bhubaneswar,Bhubaneswar,Odisha</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <form action="">
+                <h2 class="heading">Contact <span>Me!</span></h2>
+                <div class="field-box">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Phone Number" required>
+                    <input type="text" placeholder="Email Subject" required>
+                    <textarea name="" id="" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn" >Send Message</button>
+            </form>
+        </div>
+    </div>
+   </section>
+   <script src="script.js">
+    const navLinks=document.querySelectorAll('header nav a');
+const logoLink=document.querySelector('.Logo');
+const sections=document.querySelectorAll('section');
+const menuIcon=document.querySelector('#menu-icon');
+const navbar= document.querySelector('header nav');
+
+menuIcon.addEventListener('click',()=>{
+    menuIcon.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+});
+
+const activePage= () => {
+    const  header = document.querySelector('header');
+    const  barsBox = document.querySelector('.bars-box');
+    
+    header.classList.remove('active');
+    setTimeout(() => {
+        header.classList.add('active');
+    },1100);
+
+    navLinks.forEach(link => { 
+        link.classList.remove('active');
+    });
+
+    barsBox.classList.remove('active');
+    setTimeout(() => {
+        barsBox.classList.add('active');
+    },1100);
+
+    sections.forEach(section => { 
+        section.classList.remove('active');
+    });
+
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
+
+}
+navLinks.forEach((link, idx)=>{
+    link.addEventListener('click',()=>{
+        if(!link.classList.contains('active')){
+            activePage();
+
+            link.classList.add('active');
+
+            setTimeout(() => {
+                sections[idx].classList.add('active');
+            },1100);
+        }
+    })
+});
+logoLink.addEventListener('click',() =>{
+    if(!navLinks[0].classList.contains('active')){
+        activePage();
+
+        navLinks[0].classList.add('active');
+
+        setTimeout(() => {
+                sections[0].classList.add('active');
+            },1100);
+    }
+});
+
+const resumeBtns=document.querySelectorAll('.resume-btn');
+
+resumeBtns.forEach((btn,idx)=>{
+    btn.addEventListener('click',()=>{
+        const resumeDetails= document.querySelectorAll('.resume-detail');
+        
+        resumeBtns.forEach(btn=>{
+            btn.classList.remove('active');
+        });
+        btn.classList.add('active');
+
+        resumeDetails.forEach(detail=>{
+            detail.classList.remove('active');
+        });
+        resumeDetails[idx].classList.add('active');
+    });
+});
+
+const arrowRight= document.querySelector('.portfolio-box .navigation .arrow-right');
+const arrowLeft= document.querySelector('.portfolio-box .navigation .arrow-left');
+let index=0;
+const activePortfolio=()=>{
+    const imgSlide=document.querySelector('.portfolio-carousel .img-slide');
+    const portfolioDetails=document.querySelectorAll('.portfolio-detail');
+    imgSlide.style.transform= `translateX(calc(${index * -100}% - ${index*2}rem))`;
+    portfolioDetails.forEach(detail=>{
+        detail.classList.remove('active');
+    });
+    portfolioDetails[index].classList.add('active');
+}
+arrowRight.addEventListener('click',()=>{
+    if(index<4){
+        index++;
+        arrowLeft.classList.remove('disabled');
+    }
+    else{
+        index=5;
+        arrowRight.classList.add('disabled');
+    }
+
+    activePortfolio();
+});
+arrowLeft.addEventListener('click',()=>{
+    if(index>4){
+        index--;
+        arrowRight.classList.remove('disabled');
+    }
+    else{
+        index=0;
+        arrowLeft.classList.add('disabled');
+    }
+
+    activePortfolio();
+});
+   </script>
+</body>
+</html>
